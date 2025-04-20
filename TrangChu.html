@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký Music Club</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f3f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Đăng ký Music Club</h2>
+    <form action="#" method="post">
+        <label for="fullname">Họ và tên:</label>
+        <input type="text" id="fullname" name="fullname" >
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" >
+
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" >
+
+        <label for="genre">Thể loại nhạc yêu thích:</label>
+        <select id="genre" name="genre" >
+            <option value="">-- Chọn thể loại --</option>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Ballad">Ballad</option>
+            <option value="EDM">EDM</option>
+        </select>
+
+        <label for="note">Ghi chú thêm:</label>
+        <textarea id="note" name="note" rows="3"></textarea>
+
+        <button id="submit">Gửi đăng ký</button>
+    </form>
+</div>
+<script>
+    let submit = document.getElementById("submit");
+    submit.onclick = function(){
+        // Lấy dữ liệu người dùng nhập
+        let fullname = document.getElementById("fullname").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let genre = document.getElementById("genre").value;
+        let note = document.getElementById("note").value.trim();
+
+        // Kiểm tra nếu chưa nhập đủ thông tin
+        if(fullname === "" || email === "" || phone === "" || genre === "") {
+            alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+            return;
+        }
+
+        // Thông báo xác nhận
+        let message = `🎵 Bạn đã đăng ký thành công!\n\nThông tin của bạn:\nHọ tên: ${fullname}\nEmail: ${email}\nSố điện thoại: ${phone}\nThể loại nhạc: ${genre}\nGhi chú: ${note || 'Không có'}`;
+        
+        alert(message);
+
+        // Reset form về rỗng
+        document.getElementById("musicForm").reset();
+    };
+</script>
+</body>
+</html>
