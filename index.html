@@ -1,112 +1,170 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký Music Club</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f3f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .form-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 350px;
-        }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin: 10px 0 5px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        button {
-            width: 100%;
-            background-color: #3498db;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-    </style>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký We Are One Music Club</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+    .form-container label{
+        color: black;
+        text-align: left;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: darkblue;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      background-color: #3498db;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: darkblue;
+    }
+
+    .note {
+      position: absolute;
+      font-size: 24px;
+      color: #ffcc00;
+      animation: floatUp 5s linear infinite;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes flash {
+      0% { box-shadow: 0 0 20px #00ffe0; }
+      50% { box-shadow: 0 0 40px #00ffe0; }
+      100% { box-shadow: 0 0 20px #00ffe0; }
+    }
+
+    .form-flash {
+      animation: flash 1s ease;
+    }
+  </style>
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Đăng ký Music Club</h2>
-    <form action="#" method="post">
-        <label for="fullname">Họ và tên:</label>
-        <input type="text" id="fullname" name="fullname" >
+<div class="form-container" id="formContainer">
+  <h2>REGISTER AS A MEMBER</h2>
+  <form id="musicForm">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" >
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
 
-        <label for="phone">Số điện thoại:</label>
-        <input type="tel" id="phone" name="phone" >
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone">
 
-        <label for="genre">Thể loại nhạc yêu thích:</label>
-        <select id="genre" name="genre" >
-            <option value="">-- Chọn thể loại --</option>
-            <option value="Pop">Pop</option>
-            <option value="Rock">Rock</option>
-            <option value="Jazz">Jazz</option>
-            <option value="Ballad">Ballad</option>
-            <option value="EDM">EDM</option>
-        </select>
+    <label for="genre">Favorite music genre:</label>
+    <select id="genre" name="genre">
+      <option value="">-- Choose --</option>
+      <option value="Pop">Pop</option>
+      <option value="Rock">Rock</option>
+      <option value="Jazz">Jazz</option>
+      <option value="Ballad">Ballad</option>
+      <option value="EDM">EDM</option>
+    </select>
 
-        <label for="note">Ghi chú thêm:</label>
-        <textarea id="note" name="note" rows="3"></textarea>
+    <label for="note">Note:</label>
+    <textarea id="note" name="note" rows="3"></textarea>
 
-        <button id="submit">Gửi đăng ký</button>
-    </form>
+    <button type="button" id="submit">Submit</button>
+  </form>
 </div>
+
 <script>
-    let submit = document.getElementById("submit");
-    submit.onclick = function(){
-        // Lấy dữ liệu người dùng nhập
-        let fullname = document.getElementById("fullname").value.trim();
-        let email = document.getElementById("email").value.trim();
-        let phone = document.getElementById("phone").value.trim();
-        let genre = document.getElementById("genre").value;
-        let note = document.getElementById("note").value.trim();
+  const notes = ['🎵','🎶','♩','♪','♬','♭'];
 
-        // Kiểm tra nếu chưa nhập đủ thông tin
-        if(fullname === "" || email === "" || phone === "" || genre === "") {
-            alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
-            return;
-        }
+  function createNote() {
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.innerText = notes[Math.floor(Math.random() * notes.length)];
+    note.style.left = Math.random() * window.innerWidth + 'px';
+    note.style.fontSize = (16 + Math.random() * 30) + 'px';
+    note.style.animationDuration = (3 + Math.random() * 4) + 's';
+    document.body.appendChild(note);
+    setTimeout(() => {
+      note.remove();
+    }, 5000);
+  }
 
-        // Thông báo xác nhận
-        let message = `🎵 Bạn đã đăng ký thành công!\n\nThông tin của bạn:\nHọ tên: ${fullname}\nEmail: ${email}\nSố điện thoại: ${phone}\nThể loại nhạc: ${genre}\nGhi chú: ${note || 'Không có'}`;
-        
-        alert(message);
+  // Tạo hiệu ứng nốt nhạc bay khi vào trang
+  setInterval(createNote, 400);
 
-        // Reset form về rỗng
-        document.getElementById("musicForm").reset();
-    };
+  // Xử lý submit
+  const submitBtn = document.getElementById("submit");
+  submitBtn.onclick = function(){
+    let fullname = document.getElementById("fullname").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let genre = document.getElementById("genre").value;
+    let note = document.getElementById("note").value.trim();
+
+    if(fullname === "" || email === "" || phone === "" || genre === "") {
+      alert("Please fill in all required information!");
+      return;
+    }
+
+    let message = `🎵 You have successfully registered!\n\nYour information:\nFull name: ${fullname}\nEmail: ${email}\nPhone: ${phone}\nMusic genre: ${genre}\nNote: ${note || 'None'}`;
+    alert(message);
+
+    document.getElementById("musicForm").reset();
+
+    // Hiệu ứng flash cho form
+    const formContainer = document.getElementById("formContainer");
+    formContainer.classList.add("form-flash");
+    setTimeout(() => formContainer.classList.remove("form-flash"), 1000);
+  };
 </script>
+
 </body>
 </html>
